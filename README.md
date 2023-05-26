@@ -1,30 +1,43 @@
 ```mermaid
-  
-sequenceDiagram
-    participant browser
-    participant server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
-    activate server
-    server-->>browser: HTML document
-    deactivate server
+    sequenceDiagram
+        participant B as Browser
+        participant S as Server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
-    activate server
-    server-->>browser: the css file
-    deactivate server
+        B->>+S: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+        activate server
+        S-->>B: REDIRECT to https://studies.cs.helsinki.fi/exampleapp/notes
+        deactivate server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
-    activate server
-    server-->>browser: the JavaScript file
-    deactivate server
+        Note right of B: The Browser is redirected to /notes
 
-    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/notes
+        activate server
+        S-->>B: HTML Document
+        deactivate server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
-    activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
-    deactivate server
+        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+        activate server
+        S-->>B: CSS File
+        deactivate server
 
-    Note right of browser: The browser executes the callback function that renders the notes
+        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+        activate server
+        S-->>B: JavaScript File
+        deactivate server
+
+        Note right of B: The Browser starts executing the js code that fetches the JSON from the server
+
+        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+        activate server
+        S-->>B: [{ "content": "Hey, that's a new note", "date": "2023-1-1" }, ... ]
+        deactivate server
+
+        Note right of browser: The browser executes the callback function that renders the notes using the DOM-API
+
+        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/favico.ico
+        activate server
+        S-->>B: HTML Document
+        deactivate server
+
 ```
