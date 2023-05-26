@@ -6,40 +6,40 @@
         participant B as Browser
         participant S as Server
 
-        B->>S: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+        Browser->>Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
         activate server
-        S-->>B: REDIRECT to https://studies.cs.helsinki.fi/exampleapp/notes
+        Server-->>Browser: REDIRECT to https://studies.cs.helsinki.fi/exampleapp/notes
         deactivate server
 
-        Note right of B: The Browser is redirected to /notes
+        Note right of Browser: The Browser is redirected to /notes
 
-        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/notes
+        Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/notes
         activate server
-        S-->>B: HTML Document
+        Server-->>Browser: HTML Document
         deactivate server
 
-        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+        Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
         activate server
-        S-->>B: CSS File
+        Server-->>Browser: CSS File
         deactivate server
 
-        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+        Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
         activate server
-        S-->>B: JavaScript File
+        Server-->>Browser: JavaScript File
         deactivate server
 
-        Note right of B: The Browser starts executing the js code that fetches the JSON from the server
+        Note right of Browser: The Browser starts executing the js code that fetches the JSON from the server
 
-        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+        Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
         activate server
-        S-->>B: [{ "content": "Hey, that's a new note", "date": "2023-1-1" }, ... ]
+        Server-->>Browser: [{ "content": "Hey, that's a new note", "date": "2023-1-1" }, ... ]
         deactivate server
 
-        Note right of browser: The browser executes the callback function that renders the notes using the DOM-API
+        Note right of Browser: The browser executes the callback function that renders the notes using the DOM-API
 
-        B->>S: GET https://studies.cs.helsinki.fi/exampleapp/favico.ico
+        Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/favico.ico
         activate server
-        S-->>B: HTML Document
+        Server-->>Browser: HTML Document
         deactivate server
 
 ```
