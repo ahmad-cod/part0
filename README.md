@@ -3,8 +3,8 @@
 ```mermaid
 
     sequenceDiagram
-        participant B as Browser
-        participant S as Server
+        participant Browser
+        participant Server
 
         Browser->>Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
         activate server
