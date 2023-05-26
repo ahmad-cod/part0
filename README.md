@@ -1,10 +1,12 @@
+## Ex. 0.4
+
 ```mermaid
 
     sequenceDiagram
         participant B as Browser
         participant S as Server
 
-        B->>+S: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+        B->>S: POST https://studies.cs.helsinki.fi/exampleapp/new_note
         activate server
         S-->>B: REDIRECT to https://studies.cs.helsinki.fi/exampleapp/notes
         deactivate server
